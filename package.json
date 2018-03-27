@@ -1,0 +1,22 @@
+{
+  "name": "chaingear-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cyberFund/chaingear-api.git"
+  },
+  "dependencies": {
+    "express": "4.16.1"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cyberFund/chaingear-api/issues"
+  },
+  "homepage": "https://github.com/cyberFund/chaingear-api#readme"
+}
