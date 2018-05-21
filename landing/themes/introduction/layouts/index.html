@@ -1,0 +1,154 @@
+{{ partial "header.html" . }}
+<body>
+
+<div id="top"> <!-- Where all the awesome begins -->
+
+<div class="hero is-{{ .Site.Params.introHeight | default "fullheight" }}">
+<!-- Possible hero-head not used -->
+    <!-- Super sweet Hero body title -->
+    <div class="hero-body">
+        <div class="container has-text-centered">
+            <!-- Title and tagline -->
+            <h1 class="bold-title {{ if .Site.Params.fadeIn | default true }}fade-in one{{ end }}">
+                {{ .Site.Params.firstName | default "Introduction" }}
+            </h1>
+            <div class="subtitle is-3 {{ if .Site.Params.fadeIn | default true }}fade-in two{{ end }}">
+              <img class="logo" src="/{{ .Site.Params.avatar }}" alt="chaingear logo">
+            </div>
+            <h3 class="subtitle is-3 {{ if .Site.Params.fadeIn | default true }}fade-in two{{ end }}">
+                {{ .Site.Params.tagLine }}
+            </h3>
+        </div>
+    </div> <!-- Hero body title end -->
+    <!-- Hero foot has nav bar -->
+    <div class="hero-foot {{ if .Site.Params.fadeIn | default true }}fade-in three{{ end }}">
+    <hr>
+    <nav class="nav-center">
+        <a class="nav-item" href="#about">About</a>
+        <a class="nav-item" href="#values">Values</a>
+        <a class="nav-item" href="#roadmap">Roadmap</a>
+        <a class="nav-item" href="#links">Links</a>
+    </nav>
+    <hr>
+    </div><!-- Done with nav bar -->
+</div><!-- Done with Hero -->
+
+<!-- Everything below fades in three! -->
+<div class="section no-padding {{ if .Site.Params.fadeIn | default true }}fade-in three{{ end }}">
+
+<!-- Tell them all about it! -->
+<div class="section" id="about">
+    <div class="container">
+    <h2 class="title is-2 has-text-centered">About</h2>
+
+        <div class="columns"><!-- Avatar and about.md side by side except mobile -->
+            <div class="column markdown">
+                {{ range .Data.Pages }}
+                    {{if eq .Title "About" }}
+                            {{.Content}}
+                        {{end}}
+                    {{ end }}
+            </div>
+        </div>
+    </div>
+<div class="container has-text-centered top-pad"><a href="#top"><i class="fa fa-arrow-up"></i></a></div>
+<div class="container"><hr></div>
+</div>
+<!-- End About section -->
+
+<!-- Tell them all about our values! -->
+<div class="section" id="values">
+    <div class="container">
+    <h2 class="title is-2 has-text-centered">Values</h2>
+        <div class="columns">
+            <div class="column markdown has-text-centered">
+                {{ range .Data.Pages }}
+                    {{if eq .Title "Values" }}
+                            {{.Content}}
+                        {{end}}
+                    {{ end }}
+            </div>
+        </div>
+        <div class="container has-text-centered">
+          <img class="values" src=static/img/own.png alt=ownable>
+          <img class="values" src=static/img/ipfsable.png alt=ipfs>
+          <img class="values" src=static/img/decentrilezed.png alt=decentrilezed>
+          <img class="values" src=static/img/erc_721.png alt=ERC721>
+          <img class="values" src=static/img/automated.png alt=automated>
+        </div>
+    </div>
+<div class="container has-text-centered top-pad"><a href="#top"><i class="fa fa-arrow-up"></i></a></div>
+<div class="container"><hr></div>
+</div>
+<!-- End Values section -->
+
+<!-- Show them all about our roadmap! -->
+<div class="section" id="roadmap">
+    <div class="container">
+    <h2 class="title is-2 has-text-centered">Roadmap</h2>
+        <div class="columns">
+            <div class="column markdown has-text-centered">
+                {{ range .Data.Pages }}
+                    {{if eq .Title "Roadmap" }}
+                            {{.Content}}
+                        {{end}}
+                    {{ end }}
+            </div>
+        </div>
+        <div class="container has-text-centered">
+          <img class="roadmap" src=static/img/roadmap_1.png alt=value1>
+          <img class="roadmap" src=static/img/roadmap_2.png alt=value1>
+          <img class="roadmap" src=static/img/roadmap_3.png alt=value1>
+          <img class="roadmap" src=static/img/roadmap_4.png alt=value1>
+          <img class="roadmap" src=static/img/roadmap_5.png alt=value1>
+          <img class="roadmap" src=static/img/roadmap_6.png alt=value1>
+        </div>
+    </div>
+<div class="container has-text-centered top-pad"><a href="#top"><i class="fa fa-arrow-up"></i></a></div>
+<div class="container"><hr></div>
+</div>
+<!-- End Roadmap section -->
+
+<!-- Show them all iseful links -->
+<div class="section" id="links">
+    <div class="container">
+    <h2 class="title is-2 has-text-centered">Links</h2>
+
+        <div class="columns">
+            <div class="column markdown">
+                {{ range .Data.Pages }}
+                    {{if eq .Title "Links" }}
+                            {{.Content}}
+                        {{end}}
+                    {{ end }}
+
+                  <div class="container has-text-centered">
+                      {{ partial "social.html" . }}
+                  </div>
+            </div>
+        </div>
+    </div>
+<div class="container has-text-centered top-pad"><a href="#top"><i class="fa fa-arrow-up"></i></a></div>
+<div class="container"><hr></div>
+</div>
+<!-- End links section -->
+
+<!-- Nice clean finish -->
+{{ partial "footer.html" . }}
+<!-- Footer done! -->
+</div><!-- End of fade in three section -->
+<!-- Where all the awesome ends. Aww. -->
+
+<!-- Bitty scrolling links script -->
+<script>
+$('a[href^="#"]').click(function(e) {
+    e.preventDefault();
+    var target = this.hash;
+    $('html, body').animate({
+    scrollTop: $(target).offset().top
+    }, 500);
+    return false;
+})
+</script>
+
+</body>
