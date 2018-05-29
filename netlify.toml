@@ -1,5 +1,5 @@
 [build]
-publish = "dist"
+publish = "chaingear/dist"
 command = "npm run build"
 
 [context.production.environment]
