@@ -1,4 +1,4 @@
 [build]
-  base    = "cg.netlify.com"
-  publish = "dist"
+  base    = "cg.netlify.com/"
+  publish = "chaingear/dist/"
   command = "HUGO_VERSION"
