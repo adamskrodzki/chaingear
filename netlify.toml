@@ -1,6 +1,6 @@
 [build]
-publish = "landing"
-command = "HUGO_VERSION"
+publish = "dist"
+command = "npm run build"
 
 [context.production.environment]
 HUGO_VERSION = "0.41"
