@@ -147,23 +147,41 @@ contract Registry is RegistryInterface, Chaingeareable, SplitPaymentChangeable, 
     }
 
     function transferFrom(
-        address _from,
+        address _from, 
         address _to,
         uint256 _tokenId
     ) 
-        public 
-        canTransfer(_tokenId)
+        public
+        whenNotPaused
         registryInitialized
     {
-        require(_from != address(0));
-        require(_to != address(0));
+        super.transferFrom(_from, _to, _tokenId);
+    }
+    
+    function safeTransferFrom(
+        address _from,
+        address _to,
+        uint256 _tokenId
+    )
+        public
+        whenNotPaused
+        registryInitialized
+    {
+        super.safeTransferFrom(_from, _to, _tokenId);
+    }
 
-        clearApproval(_from, _tokenId);
-        removeTokenFrom(_from, _tokenId);
-        addTokenTo(_to, _tokenId);
-
-        emit Transfer(_from, _to, _tokenId);
-    }  
+    function safeTransferFrom(
+        address _from,
+        address _to,
+        uint256 _tokenId,
+        bytes _data
+    )   
+        public
+        whenNotPaused
+        registryInitialized
+    {
+        super.safeTransferFrom(_from, _to, _tokenId, _data);
+    }
 
     /**
     * @dev Allows anyone fund specified entry

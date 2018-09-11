@@ -107,20 +107,36 @@ contract Chaingear is SplitPaymentChangeable, ChaingearCore, ERC721Token {
         uint256 _tokenId
     ) 
         public 
-        canTransfer(_tokenId)
+        whenNotPaused
     {
-        require(_from != address(0));
-        require(_to != address(0));
-
-        clearApproval(_from, _tokenId);
-        removeTokenFrom(_from, _tokenId);
-        addTokenTo(_to, _tokenId);
+        super.transferFrom(_from, _to, _tokenId);
         
         address registryAddress = registries[_tokenId].contractAddress;
         RegistryInterface(registryAddress).transferAdminRights(_to);
-
-        emit Transfer(_from, _to, _tokenId);
     }  
+    
+    function safeTransferFrom(
+        address _from,
+        address _to,
+        uint256 _tokenId
+    )
+        public
+        whenNotPaused
+    {
+        super.safeTransferFrom(_from, _to, _tokenId);
+    }
+
+    function safeTransferFrom(
+        address _from,
+        address _to,
+        uint256 _tokenId,
+        bytes _data
+    )   
+        public
+        whenNotPaused
+    {
+        super.safeTransferFrom(_from, _to, _tokenId, _data);
+    }
 
     /**
     * @dev Allows to unregister Registry from Chaingear
